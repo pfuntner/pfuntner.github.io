@@ -1,3 +1,3 @@
 # pfuntner.github.io
 
-Access the site through https://pfuntner.github.io
+Access the pages through https://pfuntner.github.io

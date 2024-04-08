@@ -1,11 +1,15 @@
 .footer {
-  font-size: 75%
+  font-size: 75%;
 }
 
 .monospaced {
-  font-family: monospace, monospace
+  font-family: monospace, monospace;
 }
 
 .italic {
-  font-style: italic
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
 }

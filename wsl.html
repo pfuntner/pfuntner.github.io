@@ -20,7 +20,37 @@
 <td><a href="https://learn.microsoft.com/en-us/windows/wsl/install"><span class="italic">How to install Linux on Windows with WSL</span><a></td>
 <td>Instructions for installing WSL and installing a Linux Distro
 <br/>
-<br/>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.  I had to do this in my laptop's bios:
+<br/>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.
+When I started, vitualization was not installed:
+<pre>
+PS C:\Windows\system32> wsl --install Ubuntu-22.04
+Ubuntu 22.04 LTS is already installed.
+Launching Ubuntu 22.04 LTS...
+Installing, this may take a few minutes...
+WslRegisterDistribution failed with error: 0x80370102
+Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.
+For information please visit https://aka.ms/enablevirtualization
+Press any key to continue...
+The operation completed successfully.
+PS C:\Windows\system32> systeminfo.exe
+
+Host Name:                 JCP-20230922
+OS Name:                   Microsoft Windows 11 Enterprise
+OS Version:                10.0.22631 N/A Build 22631
+.
+.
+.
+                                 [01]: 10.24.98.199
+                                 [02]: fe80::e0c6:9638:4c6c:93e3
+                                 [03]: 2001:420:c0c8:1004::23
+Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
+                           Virtualization Enabled In Firmware: No
+                           Second Level Address Translation: Yes
+                           Data Execution Prevention Available: Yes
+PS C:\Windows\system32> 
+</pre>
+<br/>
+<br/>I had to do this in my laptop's bios:
 <br/>
 <br/><img src="images/virtualization.png" width="690" height="518"/>
 <br/>

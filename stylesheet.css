@@ -1,3 +1,7 @@
+tr, td {
+  inset: 3px;
+}
+
 .footer {
   font-size: 75%;
 }

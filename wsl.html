@@ -64,7 +64,7 @@ I had to enable virtualization from my laptop's BIOS:
 <p>The WSL machine has a different filespace but one of the most attractive things about WSL was the fact that I could easily get to any file in the Windows space. You just have to start the path with <span class="monospaced">/mnt/c/</span>.</p>
 <p>For instance, you can run the Windoze Notepad app via <span class="monospaced">/mnt/c/WINDOWS/system32/notepad.exe</span>.  <span class="bold">However</span>, because WSL has a different file space so although you can <span class="italic">start</span> Notepad, you can't use it to <span class="italic">edit</span> a file in the WSL file space!  Still, there's a huge benefit to access to Windoze files.</p>
 <h4>Symbolic links</h4>
-<p>I've actually set up symbolic links to some important files and directories which actually live in the Window space.  For example, for years, I've used <a href="https://www.cygwin.com/">Cygwin</a> instead of a Windoze command prompt and have some Github repos in Windows - some directories are present in my <span class="monospaced">PATH<span>!  Rather than duplicate the repos, I use symlinks:
+<p>I've actually set up symbolic links to some important files and directories which actually live in the Window space.  For example, for years, I've used <a href="https://www.cygwin.com/">Cygwin</a> instead of a Windoze command prompt and have some Github repos in Windows - some directories are present in my <span class="monospaced">PATH</span>!  Rather than duplicate the repos, I use symlinks:
 </p>
 <pre class="indent smaller-text">
 ln -sv /mnt/c/cygwin64/home/mrbruno/repos ~/repos

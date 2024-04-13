@@ -7,22 +7,21 @@
 <h1>WSL <span class="italic">(Windoze Subsystem for Linux)</span></h1>
 <h2>Work in progress</h2>
 <p>This page is a <span style="italic">work in progress</span>.  Check back later!</p>
+<h2>Introduction</h2>
 <p>I think I tried WSL a few years ago and wasn't especially impressed.  At work, I have a Windoze laptop and would do a lot of <span class="italic">real work</span> on a Openstack Linux machine.</p>
-<h3>Links</h3>
+<p>I made a lot of use of VSCode's Remote SSH plugin to edit files on the Linux machine from the laptop but would occasionally have trouble with it working for me.  In 2024, VSCode was causing me grief because the server code was taking over the remote CPU and it became so intolerable that I stopped using VSCode for a while.  I asked colleagues with whom I worked if they had better solutions on Windoze laptops and someone said they used WSL.  I asked him some more questions and it sounded very encouraging so I checked it out.</p>
+<p>Now I'm basically doing all of my work on the WSL machine.</p>
+<h3>Why Windoze???</h3>
+<p>At my current job, employees are given the choice of Mac or Windoze laptops.  I'm a contractor and I don't even think they gave me a choice when I first started a couple of years ago - I just got Windoze.  I've heard that contractors aren't even allowed to request Macs for some reason - I think there was another contractor on my team who was assigned a Mac but eventually had to return it for Windoze for some stupid reason.  I don't even have that much experience with Macs and don't know if I would like it or not.</p>
+<hr/>
+<h2>Links</h2>
 <p>Here are some links to help you get started
-<table border="1">
-<tr><th>Link</th><th>Comments</th></tr>
-<tr>
-<td><a href="https://learn.microsoft.com/en-us/windows/wsl/about"><spam class="italic">What is the Windows Subsystem for Linux?</span><a></td>
-<td>Basic information about WSL</td>
-</tr>
-<tr>
-<td><a href="https://learn.microsoft.com/en-us/windows/wsl/install"><span class="italic">How to install Linux on Windows with WSL</span><a></td>
-<td>Instructions for installing WSL and installing a Linux Distro
-<br/>
-<br/>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.
-When I started, vitualization was not enabled:
-<pre>
+<h3>General Information about WSL</h3>
+Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/about"><spam class="italic">What is the Windows Subsystem for Linux?</span><a>
+<h3>Instructions for installing WSL and installing a Linux Distro</h3>
+<p>Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/install"><span class="italic">How to install Linux on Windows with WSL</span><a>. <p/>
+<p>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.  When I started, vitualization was not enabled:
+<pre class="indent smaller-text">
 PS C:\Windows\system32> wsl --install Ubuntu-22.04
 Ubuntu 22.04 LTS is already installed.
 Launching Ubuntu 22.04 LTS...
@@ -49,52 +48,46 @@ Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
                            Data Execution Prevention Available: Yes
 PS C:\Windows\system32> 
 </pre>
-<br/>I had to enable it from my laptop's bios:
-<br/>
-<br/><img src="images/virtualization.png" width="690" height="518"/>
-<br/>
-<br/>I even had to look up tips from the Internet to bring up the BIOS menu so your mileage may vary!</td>
-</tr>
-<tr>
-<td><a href="https://learn.microsoft.com/en-us/windows/wsl/about"><spam class="italic">What is the Windows Subsystem for Linux?</span><a></td>
-<td>The <span class="italic">man page</span> for the <span class="monospaced">wsl</span> command.</td>
-</tr>
-<tr>
-  <td><a href="https://gist.github.com/pfuntner/7055ea04c84199fed503c1a2798b4378><span class="monospaced">wsl</span> manpage</td>
-  <td>I couldn't find a decent <span class="italic">man page</span>> of the <span class="monospaced">wsl</span> command so I captured the online help and saved in a Gist file.</td>
-</tr>
-</table>
 </p>
-<h3>Likes</h3>
+<p>
+I had to enable virtualization from my laptop's BIOS:
+<div class="indent">
+<img src="images/virtualization.png" width="690" height="518"/>
+</div>
+<br/>I even had to look up tips from the Internet to bring up the BIOS menu so your mileage may vary!</p>
+<h3><span class="monospaced">wsl</span> man page</h3>
+<p>I couldn't find a decent <span class="italic">man page</span> of the <span class="monospaced">wsl</span> command so I captured the online help and saved in <a href="https://gist.githubusercontent.com/pfuntner/7055ea04c84199fed503c1a2798b4378/raw/5eba5215296595e54bf526b27850424e47304e03/wsl-man.txt">a Gist file</a>.</p>
+<hr/>
+<h2>Likes</h2>
 <p>There are some things I like about WSL.
-<table border="1">
-<tr><th>Topic</th><th>Comments</th></tr>
-<tr>
-<td>Access to Windoze files</td>
-<td><span class="monospaced">/mnt/c/</span></td>
-</tr>
-</table>
+<h3>Access to Windoze files</h3>
+<p>The WSL machine has a different filespace but one of the most attractive things about WSL was the fact that I could easily get to any file in the Windows space. You just have to start the path with <span class="monospaced">/mnt/c/</span>.</p>
+<p>For instance, you can run the Windoze Notepad app via <span class="monospaced">/mnt/c/WINDOWS/system32/notepad.exe</span>.  <span class="bold">However</span>, because WSL has a different file space so although you can <span class="italic">start</span> Notepad, you can't use it to <span class="italic">edit</span> a file in the WSL file space!  Still, there's a huge benefit to access to Windoze files.</p>
+<h4>Symbolic links</h4>
+<p>I've actually set up symbolic links to some important files and directories which actually live in the Window space.  For example, for years, I've used <a href="https://www.cygwin.com/">Cygwin</a> instead of a Windoze command prompt and have some Github repos in Windows - some directories are present in my <span class="monospaced">PATH<span>!  Rather than duplicate the repos, I use symlinks:
 </p>
-<h3>Dislikes</h3>
+<pre class="indent smaller-text">
+ln -sv /mnt/c/cygwin64/home/mrbruno/repos ~/repos
+</pre>
+<p>I host most of my Github repos in Windows, set up one or more symlinks, and edit them in WSL with <span class="monospaced">vi</span>.  I can also edit the repos with VSCode and it's all very seamless.
+</p>
+<hr/>
+<h2>Dislikes</h2>
 <p>There are some things I <span class="bold">do not like</span> about WSL.
-<table border="1">
-<tr><th>Topic</th><th>Comments</th></tr>
-<tr>
-<td>Networking</td>
-<td>VPN</td>
-</tr>
-</table>
-</p>
-<h3>Tips</h3>
+<h3>Networking</h3>
+<p>My biggest complaint has to be VPN.  I'm mostly using WSL on my work laptop and I have to be on VPN to get to my company's network.  It doesn't appear as though the WSL team put any thought at all into working with VPN and I'm not the only person who has had trouble.  You'll find all sorts of posts and tips about what to do and I didn't find a single <span class="italic">silver bullet</span>.  I eventually got it working but I basically had to use <span class="monospaced">/etc/resolv.conf</span> from a colleague at work who got WSL working.</p>
+<h3>Lack of a <span class="italic">real</span> <span class="monospaced">cron</span> service</h3>
+<p>Sure, WSL has commands like <span class="monospaced">crontab</span> and even a <span class="monospaced">cron</span> service but what good is it when you shut your laptop down??  I miss a real <span class="monospaced">cron</span> service on my Openstack machine... although I didn't have a lot of cronjobs and recently lost the need to have those... it's a long story but I've shifted from using persistent cloud credentials to credentials that are only good for eight hours... the cronjobs depended on the credentials so I've already disabled the cronjobs.</p>
+<hr/>
+<h2>Tips</h2>
 <p>I learned some other tips you might find useful with WSL.
-<table border="1">
-<tr><th>Tip</th><th>Comments</th></tr>
-<tr>
-<td>Avoid the <span="monospaced">shutdown</span> command!</td>
-<td>Lately I've found <span="mospaced">shutdown -r 1</span> to be the easiest way to do a reboot a Linux machine and recover control of your shell before the reboot but you should avoid the command in WSL.</td>
-</tr>
-</table>
-</p>
+<h3>Avoid the <span class="monospaced">shutdown</span> command!</h3>
+<p>Lately I've found <span="mospaced">shutdown -r 1</span> to be the easiest way to do a reboot a Linux machine and recover control of your shell before the reboot but you should avoid the command in WSL.</p>
+<p>The first time I experimented with <span class="monospaced">shutdown</span> on WSL, I had trouble starting it back up again!  I thought it might not recover until I rebooted... possibly, some intervention had to take place!  But eventually <span class="italic">(after at least 15 minutes, I think!)</span> it worked fine.</p>
+<h3>Running Windoze commands from inside WSL</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<h3>Running WSL commands from Windoze</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <hr/>
 <div class="footer">
 <p>Learn more about github.io at <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages">Working with GitHub Pages</a>.</p>

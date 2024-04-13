@@ -8,6 +8,7 @@ th, td {
 
 .monospaced {
   font-family: monospace, monospace;
+  font-size: 80%;
 }
 
 .italic {
@@ -16,4 +17,12 @@ th, td {
 
 .bold {
   font-weight: bold;
+}
+
+.indent {
+  margin-left: 40px;
+}
+
+.smaller-text {
+  font-size: 80%;
 }

@@ -80,14 +80,77 @@ ln -sv /mnt/c/cygwin64/home/mrbruno/repos ~/repos
 <p>I'm used to using Linux on an Openstack machine hosted by the company for whom I work.  I would <span class="monospaced">ssh</span> in and the command prompt is all I need.  Compared to WSL, network-intensive operations (for instance, pulling a Docker image or downloading a large tarball) can take much longer.  Not only do operations depend more on your ISP but there's your home network (possibly WiFi). The point is these devices likely don't process traffic at the same speed as commercial equipment.  When I was using Openstack, the data never had to reach my laptop!</p>
 <h4>Side-by-side comparison</h4>
 I want to compare performance of a large file on WSL compared to Openstack.  I am choosing to use <a href="https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso">AlmaLinux-9-latest-x86_64-dvd.iso</a> (10,916,724,736 bytes, 11GB, md5sum: <span class="monospaced">c78e2b04410f98fa1a29f2b0b8e60077</span>) because it's quite large.  I'm also using <a href="https://www.speedtest.net/apps/cli">speedtest-cli</a> to measure the speed.
-<h5>Openstack example</h5>
-<pre class="indent smaller-text">
-Coming soon!
-</pre>
 <h5>WSL example</h5>
 <pre class="indent smaller-text">
-Coming soon!
+$ speedtest
+   Speedtest by Ookla
+
+      Server: Wavefly - Raleigh, NC (id: 51030)
+         ISP: noyb
+Idle Latency:    39.35 ms   (jitter: 1.69ms, low: 39.13ms, high: 42.53ms)
+    Download:   259.49 Mbps (data used: 434.9 MB)
+                556.94 ms   (jitter: 82.65ms, low: 38.45ms, high: 2325.42ms)
+      Upload:   169.79 Mbps (data used: 227.9 MB)
+                149.73 ms   (jitter: 47.05ms, low: 38.98ms, high: 237.16ms)
+ Packet Loss: Not available.
+  Result URL: noyb
+
+$ /usr/bin/time wget https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso
+--2024-04-14 09:12:47--  https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso
+Resolving mirror.vtti.vt.edu (mirror.vtti.vt.edu)... 198.82.152.116, 2001:468:c80:2133:0:b0e2:0:9874
+Connecting to mirror.vtti.vt.edu (mirror.vtti.vt.edu)|198.82.152.116|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10916724736 (10G) [application/octet-stream]
+Saving to: ‘AlmaLinux-9-latest-x86_64-dvd.iso.1’
+
+AlmaLinux-9-latest-x86_64-dv 100%[===========================================>]  10.17G  20.2MB/s    in 9m 41s
+
+2024-04-14 09:22:29 (17.9 MB/s) - ‘AlmaLinux-9-latest-x86_64-dvd.iso.1’ saved [10916724736/10916724736]
+
+18.41user 48.91system 9:41.49elapsed 11%CPU (0avgtext+0avgdata 9024maxresident)k
+0inputs+21321888outputs (0major+661minor)pagefaults 0swaps
+$
 </pre>
+<!--   Result URL: https://www.speedtest.net/result/c/d893803d-e808-4a44-bf8a-bd13f8108ca2 -->
+<h5>Openstack example</h5>
+<pre class="indent smaller-text">
+$ /usr/bin/time wget https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso
+--2024-04-14 09:06:57--  https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso
+Resolving mirror.vtti.vt.edu (mirror.vtti.vt.edu)... 198.82.152.116, 2001:468:c80:2133:0:b0e2:0:9874
+Connecting to mirror.vtti.vt.edu (mirror.vtti.vt.edu)|198.82.152.116|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10916724736 (10G) [application/octet-stream]
+Saving to: ‘AlmaLinux-9-latest-x86_64-dvd.iso.1’
+
+AlmaLinux-9-latest-x86_64-dv 100%[===========================================>]  10.17G  55.8MB/s    in 2m 52s
+
+2024-04-14 09:09:50 (60.5 MB/s) - ‘AlmaLinux-9-latest-x86_64-dvd.iso.1’ saved [10916724736/10916724736]
+
+12.48user 52.31system 2:52.38elapsed 37%CPU (0avgtext+0avgdata 6568maxresident)k
+4784inputs+21321768outputs (34major+410minor)pagefaults 0swaps
+$
+</pre>
+<p>You may have noticed that I didnt include the speedtest result.  That's because it didnt work.  I figure there are firewall rules set up at my work Openstack host so speedtest can't reach its servers:
+<pre class="indent smaller-text">
+$ speedtest
+
+   Speedtest by Ookla
+
+[error] Error: [101] Network unreachable
+[error] Error: [0] Timeout occurred in connect.
+[error] Error: [0] Timeout occurred in connect.
+[error] Error: [101] Network unreachable
+[error] Error: [101] Network unreachable
+[error] Error: [0] Timeout occurred in connect.
+[error] Error: [0] Timeout occurred in connect.
+[error] Error: [0] Timeout occurred in connect.
+[error] Error: [101] Network unreachable
+[error] Error: [0] Timeout occurred in connect.
+[error] Server Selection - Failed to find a working test server. (NoServers)
+$ 
+</pre>
+But you can see that there's a serious difference in time.
+</p>
 <h3>Lack of a <span class="italic">real</span> <span class="monospaced">cron</span> service</h3>
 <p>Sure, WSL has commands like <span class="monospaced">crontab</span> and even a <span class="monospaced">cron</span> service but what good is it when you shut your laptop down??  I miss a real <span class="monospaced">cron</span> service on my Openstack machine... although I didn't have a lot of cronjobs and recently lost the need to have those... it's a long story but I've shifted from using persistent cloud credentials to credentials that are only good for eight hours... the cronjobs depended on the credentials so I've already disabled the cronjobs.</p>
 <hr/>

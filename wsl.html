@@ -76,6 +76,18 @@ ln -sv /mnt/c/cygwin64/home/mrbruno/repos ~/repos
 <p>There are some things I <span class="bold">do not like</span> about WSL.
 <h3>Networking</h3>
 <p>My biggest complaint has to be VPN.  I'm mostly using WSL on my work laptop and I have to be on VPN to get to my company's network.  It doesn't appear as though the WSL team put any thought at all into working with VPN and I'm not the only person who has had trouble.  You'll find all sorts of posts and tips about what to do and I didn't find a single <span class="italic">silver bullet</span>.  I eventually got it working but I basically had to use <span class="monospaced">/etc/resolv.conf</span> from a colleague at work who got WSL working.</p>
+<h3>Network performance</h3>
+<p>I'm used to using Linux on an Openstack machine hosted by the company for whom I work.  I would <span class="monospaced">ssh</span> in and the command prompt is all I need.  Compared to WSL, network-intensive operations (for instance, pulling a Docker image or downloading a large tarball) can take much longer.  Not only do operations depend more on your ISP but there's your home network (possibly WiFi). The point is these devices likely don't process traffic at the same speed as commercial equipment.  When I was using Openstack, the data never had to reach my laptop!</p>
+<h4>Side-by-side comparison</h4>
+I want to compare performance of a large file on WSL compared to Openstack.  I am choosing to use <a href="https://mirror.vtti.vt.edu/almalinux/9.3/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso">AlmaLinux-9-latest-x86_64-dvd.iso</a> (10,916,724,736 bytes, 11GB, md5sum: <span class="monospaced">c78e2b04410f98fa1a29f2b0b8e60077</span>) because it's quite large.  I'm also using <a href="https://www.speedtest.net/apps/cli">speedtest-cli</a> to measure the speed.
+<h5>Openstack example</h5>
+<pre class="indent smaller-text">
+Coming soon!
+</pre>
+<h5>WSL example</h5>
+<pre class="indent smaller-text">
+Coming soon!
+</pre>
 <h3>Lack of a <span class="italic">real</span> <span class="monospaced">cron</span> service</h3>
 <p>Sure, WSL has commands like <span class="monospaced">crontab</span> and even a <span class="monospaced">cron</span> service but what good is it when you shut your laptop down??  I miss a real <span class="monospaced">cron</span> service on my Openstack machine... although I didn't have a lot of cronjobs and recently lost the need to have those... it's a long story but I've shifted from using persistent cloud credentials to credentials that are only good for eight hours... the cronjobs depended on the credentials so I've already disabled the cronjobs.</p>
 <hr/>

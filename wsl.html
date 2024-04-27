@@ -17,10 +17,10 @@
 <h2>Links</h2>
 <p>Here are some links to help you get started
 <h3>General Information about WSL</h3>
-Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/about"><spam class="italic">What is the Windows Subsystem for Linux?</span><a>
+Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/about"><span class="italic">What is the Windows Subsystem for Linux?</span></a><p>
 <h3>Instructions for installing WSL and installing a Linux Distro</h3>
-<p>Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/install"><span class="italic">How to install Linux on Windows with WSL</span><a>. <p/>
-<p>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.  When I started, vitualization was not enabled:
+<p>Check out <a href="https://learn.microsoft.com/en-us/windows/wsl/install"><span class="italic">How to install Linux on Windows with WSL</span></a>.</p>
+<p>Be aware that <span class="italic">Virtualization</span> must be enabled on the Windoze machine.  When I started, vitualization was not enabled:</p>
 <pre class="indent smaller-text">
 PS C:\Windows\system32> wsl --install Ubuntu-22.04
 Ubuntu 22.04 LTS is already installed.
@@ -48,13 +48,11 @@ Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
                            Data Execution Prevention Available: Yes
 PS C:\Windows\system32> 
 </pre>
-</p>
-<p>
-I had to enable virtualization from my laptop's BIOS:
+<p>I had to enable virtualization from my laptop's BIOS:</p>
 <div class="indent">
 <img src="images/virtualization.png" width="690" height="518"/>
 </div>
-<br/>I even had to look up tips from the Internet to bring up the BIOS menu so your mileage may vary!</p>
+<p>I even had to look up tips from the Internet to bring up the BIOS menu so your mileage may vary!</p>
 <h3><span class="monospaced">wsl</span> man page</h3>
 <p>I couldn't find a decent <span class="italic">man page</span> of the <span class="monospaced">wsl</span> command so I captured the online help and saved in <a href="https://gist.githubusercontent.com/pfuntner/7055ea04c84199fed503c1a2798b4378/raw/5eba5215296595e54bf526b27850424e47304e03/wsl-man.txt">a Gist file</a>.</p>
 <hr/>
@@ -130,7 +128,7 @@ AlmaLinux-9-latest-x86_64-dv 100%[===========================================>] 
 4784inputs+21321768outputs (34major+410minor)pagefaults 0swaps
 $
 </pre>
-<p>You may have noticed that I didnt include the speedtest result.  That's because it didnt work.  I figure there are firewall rules set up at my work Openstack host so speedtest can't reach its servers:
+<p>You may have noticed that I didn't include the speedtest result.  That's because it didn't work.  I figure there are firewall rules set up at my work Openstack host so speedtest can't reach its servers:</p>
 <pre class="indent smaller-text">
 $ speedtest
 
@@ -149,6 +147,7 @@ $ speedtest
 [error] Server Selection - Failed to find a working test server. (NoServers)
 $ 
 </pre>
+<p>
 But you can see that there's a serious difference in time.
 </p>
 <h3>Lack of a <span class="italic">real</span> <span class="monospaced">cron</span> service</h3>
@@ -157,12 +156,66 @@ But you can see that there's a serious difference in time.
 <h2>Tips</h2>
 <p>I learned some other tips you might find useful with WSL.
 <h3>Avoid the <span class="monospaced">shutdown</span> command!</h3>
-<p>Lately I've found <span="mospaced">shutdown -r 1</span> to be the easiest way to do a reboot a Linux machine and recover control of your shell before the reboot but you should avoid the command in WSL.</p>
-<p>The first time I experimented with <span class="monospaced">shutdown</span> on WSL, I had trouble starting it back up again!  I thought it might not recover until I rebooted... possibly, some intervention had to take place!  But eventually <span class="italic">(after at least 15 minutes, I think!)</span> it worked fine.</p>
+<p>Lately I've found <span class="monospaced">shutdown -r 1</span> to be the easiest way to do a reboot a Linux machine and recover control of your shell before the reboot but you should avoid the command in WSL.</p>
+<p>The first time I experimented with <span class="monospaced">shutdown</span> on WSL, I had trouble starting it back up again!</p>
+<pre class="indent smaller-text">
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForLinux_2.1.5.0_x64__8wekyb3d8bbwe
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Common Files\Oracle\Java\javapath
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\system32
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\Wbem
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\WindowsPowerShell\v1.0\
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\OpenSSH\
+<3>WSL (705) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Microsoft VS Code\bin
+$
+</pre>
+<p>I thought it might not recover until I rebooted... possibly, some intervention had to take place!  But eventually <span class="italic">(after at least 15 minutes, I think!)</span> it worked fine.  In contrast, a <span class="italic">simple</span> reboot on a <span class="italic">real</span> Linux machine only takes a minute or two.</p>
+<p>See <a href="#wsl_shutdown"><span class="italic">WSL Shutdown</span></a> for a better way to restart WSL.</p>
+<h3 id="wsl_shutdown">WSL Shutdown</h3>
+<p>From <a href="https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux"><span class="italic">No internet connection on WSL Ubuntu (Windows Subsystem for Linux)</span></a>, I learned this is a good command to restart WSL (if necessary):</p>
+<pre class="indent smaller-text">
+wsl --shutdown
+</pre>
 <h3>Running Windoze commands from inside WSL</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>I’ve seen this in various posts including <a href="https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux"><span class="italic">No internet connection on WSL Ubuntu (Windows Subsystem for Linux)</span></a>:</p>
+<pre class="indent smaller-text">
+$ /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command 'Get-DnsClientGlobalSetting | Select-Object -ExpandProperty SuffixSearchList'
+foo.com
+$
+</pre>
+<p>I think this is useful enough to set up an alias:</p>
+<pre class="indent smaller-text">
+$ grep windows .bashrc
+alias windows='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe'
+$ windows -Command 'Get-DnsClientGlobalSetting | Select-Object -ExpandProperty SuffixSearchList'
+foo.com
+$
+</pre>
+<p>Look at that! I didn’t even use my regular nickname for Windoze! I’m not sure if this is only for PowerShell or what. Frankly, at this point, I still don’t understand the difference between PowerShell and the regular Wiundoze command prompt - and I don't really care enough to learn the difference.  I don't have a need to know the difference and there's a lot of other stuff I would rather learn.</p>
 <h3>Running WSL commands from Windoze</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>You can run a Linux command directly from a Windoze command prompt:</p>
+<pre class="indent smaller-text">
+PS C:\Users\jpfuntne> wsl cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+PS C:\Users\jpfuntne>
+</pre>
+<p>I think I learned this from <a href="https://learn.microsoft.com/en-us/windows/wsl/networking"><span class="italic">Accessing a WSL 2 distribution from your local area network (LAN)</span></a>.  This could be a good way of having something in the Windoze space accessing a file in the WSL space:</p>
+<pre class="indent smaller-text">
+$ wsl cat /etc/os-release | awk -F \" '/PRETTY_NAME=/ { print $2 }'
+Ubuntu 22.04.3 LTS
+$
+</pre>
 <hr/>
 <div class="footer">
 <p>Learn more about github.io at <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages">Working with GitHub Pages</a>.</p>

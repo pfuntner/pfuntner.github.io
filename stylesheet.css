@@ -1,5 +1,11 @@
-html {
-    background-color: "#aecaf5"
+body {
+    background-color: black;
+}
+
+div.main {
+    background-color: #daecf7;
+    margin: 10px 10px 10px 10px;
+    padding: 20px 20px 20px 20px;
 }
 
 th, td {
@@ -8,6 +14,7 @@ th, td {
 
 .footer {
     font-size: 75%;
+    color: white;
 }
 
 .monospaced {

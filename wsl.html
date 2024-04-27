@@ -8,9 +8,9 @@
 <h2>Work in progress</h2>
 <p>This page is a <span style="italic">work in progress</span>.  Check back later!</p>
 <h2>Introduction</h2>
-<p>I think I tried WSL a few years ago and wasn't especially impressed.  At work, I have a Windoze laptop and would do a lot of <span class="italic">real work</span> on a Openstack Linux machine.</p>
+<p>I think I tried WSL a few years ago and wasn't especially impressed.  At work, I have a Windoze laptop and would do a lot of <span class="italic">real work</span> on an Openstack Linux machine.</p>
 <p>I made a lot of use of VSCode's Remote SSH plugin to edit files on the Linux machine from the laptop but would occasionally have trouble with it working for me.  In 2024, VSCode was causing me grief because the server code was taking over the remote CPU and it became so intolerable that I stopped using VSCode for a while.  I asked colleagues with whom I worked if they had better solutions on Windoze laptops and someone said they used WSL.  I asked him some more questions and it sounded very encouraging so I checked it out.</p>
-<p>Now I'm basically doing all of my work on the WSL machine.</p>
+<p>Now I'm basically doing all of my work on the WSL machine.  I even went ahead and installed WSL on my home Windoze laptop as well.</p>
 <h3>Why Windoze???</h3>
 <p>At my current job, employees are given the choice of Mac or Windoze laptops.  I'm a contractor and I don't even think they gave me a choice when I first started a couple of years ago - I just got Windoze.  I've heard that contractors aren't even allowed to request Macs for some reason - I think there was another contractor on my team who was assigned a Mac but eventually had to return it for Windoze for some stupid reason.  I don't even have that much experience with Macs and don't know if I would like it or not.</p>
 <hr/>
@@ -216,6 +216,7 @@ $ wsl cat /etc/os-release | awk -F \" '/PRETTY_NAME=/ { print $2 }'
 Ubuntu 22.04.3 LTS
 $
 </pre>
+<p>As I previously said, I usually a Cygwin prompt instead of a regular Windoze prompt so this is a Linux command but it's running in the Windoze space and doesn't have direct access to the WSL file space.</p>
 <hr/>
 <div class="footer">
 <p>Learn more about github.io at <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages">Working with GitHub Pages</a>.</p>

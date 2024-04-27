@@ -1,28 +1,32 @@
+html {
+    background-color: "#aecaf5"
+}
+
 th, td {
-  padding: 4px;
+    padding: 4px;
 }
 
 .footer {
-  font-size: 75%;
+    font-size: 75%;
 }
 
 .monospaced {
-  font-family: monospace, monospace;
-  font-size: 80%;
+    font-family: monospace, monospace;
+    font-size: 80%;
 }
 
 .italic {
-  font-style: italic;
+    font-style: italic;
 }
 
 .bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .indent {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .smaller-text {
-  font-size: 80%;
+    font-size: 80%;
 }

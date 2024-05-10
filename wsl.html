@@ -250,6 +250,19 @@ Ubuntu 22.04.3 LTS
 $
 </pre>
 <p>As I previously said, I usually a Cygwin prompt instead of a regular Windoze prompt so this is a Linux command but it's running in the Windoze space and doesn't have direct access to the WSL file space.</p>
+<h3>Deleting a distro</h3>
+<p>So I was chugging along with my WSL distro and was quite happy with it.  I had a need to create a <span class="italic">small</span> distro to test something so I installed another one for Ubuntu 20 at work.  I don't think it had even finished before I thought better because I had nightmares of all the trouble I had with VPN.  So I wanted to remove it immediately.  I think I did a command like:</p>
+<pre class="indent smaller-text">
+wsl --uninstall Ubuntu-20.04
+</pre>
+<p>I'm pretty sure I used <span class="monospaced">wsl --install Ubuntu-20.04</span> to install the second distro but, suffice to say, that wasn't the command I wanted!  Because shortly thereafter, my regular distro stopped working and I couldn't get back in!  When I ran <span class="monospace">wsl</span>, it would just give me the help text and I was kind of baffled.  It appeared that my regular distro was <span class="italic">gone!</span>.  I rebooted and hoped it would just pop back but no!</p>
+<p>I believe the <span class="monospaced">--uninstall</span> actually uninstalled the WSL engine on my laptop!  I hoped that I could just reinstall it and it hadn't removed my distro... thankfully, that's just what happened!  I had to reboot again but I was happy to do that as long as my distro was safe.</p>
+<p>And to be complete, it looks like the command I wanted to remove the second distro was:</p>
+<pre class="indent smaller-text">
+wsl --unregister Ubuntu-20.04
+</pre>
+<p>It was <span class="italic">amazingly quick</span> but it seemed to do what I wanted.  I checked and it had not just put a file in the trash can.</p>
+<p>I wasn't sure to call this a <span class="italic">tip</span> or <span class="italic">dislike/gripe</span> but I settled on a tip!</p>
 <hr/>
 </div>
 <div class="footer">

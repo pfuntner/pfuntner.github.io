@@ -6,14 +6,15 @@
 <body>
 <div class="main">
 <h1>WSL <span class="italic">(Windoze Subsystem for Linux)</span></h1>
-<h2>Work in progress</h2>
-<p>This page is a <span style="italic">work in progress</span>.  Check back later!</p>
+<h4>Work in progress</h4>
+<p><span class="italic">This page is a <span style="italic">work in progress</span>.  Check back later for updates!</span></p>
 <h2>Introduction</h2>
-<p>I think I tried WSL a few years ago and wasn't especially impressed.  At work, I have a Windoze laptop and would do a lot of <span class="italic">real work</span> on an Openstack Linux machine.</p>
-<p>I made a lot of use of VSCode's Remote SSH plugin to edit files on the Linux machine from the laptop but would occasionally have trouble with it working for me.  In 2024, VSCode was causing me grief because the server code was taking over the remote CPU and it became so intolerable that I stopped using VSCode for a while.  I asked colleagues with whom I worked if they had better solutions on Windoze laptops and someone said they used WSL.  I asked him some more questions and it sounded very encouraging so I checked it out.</p>
+<p>I think I tried WSL a few years ago and wasn't especially impressed.</p>
+<p>At work, I have a Windoze laptop and would do a lot of <span class="italic">real work</span> on an Openstack Linux machine.  I made a lot of use of VSCode's Remote SSH plugin to edit files on the Linux machine from the laptop but would occasionally have trouble with it working for me.  In 2024, VSCode was causing me grief because the server code was taking over the remote CPU and it became so intolerable that I stopped using VSCode for a while.  I asked colleagues with whom I worked if they had better solutions on Windoze laptops and someone said they used WSL.  I asked him some more questions and it sounded very encouraging so I checked it out.</p>
 <p>Now I'm basically doing all of my work on the WSL machine.  I even went ahead and installed WSL on my home Windoze laptop as well.</p>
 <h3>Why Windoze???</h3>
 <p>At my current job, employees are given the choice of Mac or Windoze laptops.  I'm a contractor and I don't even think they gave me a choice when I first started a couple of years ago - I just got Windoze.  I've heard that contractors aren't even allowed to request Macs for some reason - I think there was another contractor on my team who was assigned a Mac but eventually had to return it for Windoze for some stupid reason.  I don't even have that much experience with Macs and don't know if I would like it or not.</p>
+<p>At home, my main machine is true Linux but I have a laptop with Windoze.</p>
 <hr/>
 <h2>Links</h2>
 <p>Here are some links to help you get started
@@ -210,7 +211,7 @@ $
 wsl --shutdown
 </pre>
 <h3>Running Windoze commands from inside WSL</h3>
-<p>I’ve seen this in various posts including <a href="https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux"><span class="italic">No internet connection on WSL Ubuntu (Windows Subsystem for Linux)</span></a>:</p>
+<p>I've seen this in various posts including <a href="https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux"><span class="italic">No internet connection on WSL Ubuntu (Windows Subsystem for Linux)</span></a>:</p>
 <pre class="indent smaller-text">
 $ /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command 'Get-DnsClientGlobalSetting | Select-Object -ExpandProperty SuffixSearchList'
 foo.com

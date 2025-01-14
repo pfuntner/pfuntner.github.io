@@ -210,6 +210,7 @@ $
 <pre class="indent smaller-text">
 wsl --shutdown
 </pre>
+<p>I recently had to use this because I started my WSL machine at the beginning of my work day and had lost network connectivity - I couldn't do a <span class="monospaced">git pull</span> or pull a container image from a remote repository.  I ended the previous day by installing the <span class="italic">Windoze 11 version 24H2</span> update and I feared something happened there.  The first thing I did to correct it was to exit my WSL shell, do <span class="monospaced">wsl --shutdown</span>, and then start WSL again - the machine was fine after that.</p>
 <h3>Running Windoze commands from inside WSL</h3>
 <p>I've seen this in various posts including <a href="https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux"><span class="italic">No internet connection on WSL Ubuntu (Windows Subsystem for Linux)</span></a>:</p>
 <pre class="indent smaller-text">
